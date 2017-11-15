@@ -25,10 +25,14 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	t.templ.Execute(w, r)
 }
 
-func main()  {
+func main() {
+	r := newRoom()
 	http.Handle("/", &templateHandler{filename: "chat.html"})
-
+	http.Handle("/room", r)
+	// get the room going
+	go r.run()
+	// start the web server
 	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal("Listen and serve:", err)
+		log.Fatal("ListenAndServe:", err)
 	}
 }

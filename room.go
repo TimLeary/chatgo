@@ -47,22 +47,29 @@ func (r *room) run() {
 	}
 }
 
-func (r *room) ServeHttp(w http.ResponseWriter, req *http.Request) {
+func (r *room) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	socket, err := upgrader.Upgrade(w, req, nil)
 	if err != nil {
 		log.Fatal("ServeHTTP:", err)
 		return
 	}
-
 	client := &client{
 		socket: socket,
-		send: make(chan []byte, messageBufferSize),
-		room: r,
+		send:   make(chan []byte, messageBufferSize),
+		room:   r,
 	}
-
 	r.join <- client
-	defer func() {r.leave<-client}()
+	defer func() { r.leave <- client }()
 	go client.write()
 	client.read()
 }
 
+// newRoom makes a new room.
+func newRoom() *room {
+	return &room{
+		forward: make(chan []byte),
+		join:    make(chan *client),
+		leave:   make(chan *client),
+		clients: make(map[*client]bool),
+	}
+}
