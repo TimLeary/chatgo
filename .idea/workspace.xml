@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c69fbb5-36b2-469f-894d-89aa9d49c521" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/main/autih.go" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/main/room.go" afterPath="$PROJECT_DIR$/main/room.go" />
-      <change beforePath="$PROJECT_DIR$/trace/tracer.go" afterPath="$PROJECT_DIR$/trace/tracer.go" />
-      <change beforePath="$PROJECT_DIR$/trace/tracer_test.go" afterPath="$PROJECT_DIR$/trace/tracer_test.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,13 +14,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
               <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
               <folding>
                 <element signature="e#14#115#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="autih.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/autih.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="e#14#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,6 +142,7 @@
         <option value="$PROJECT_DIR$/trace/tracer.go" />
         <option value="$PROJECT_DIR$/main/room.go" />
         <option value="$PROJECT_DIR$/main/main.go" />
+        <option value="$PROJECT_DIR$/main/autih.go" />
       </list>
     </option>
   </component>
@@ -276,7 +287,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add trace to program" />
-    <option name="LAST_COMMIT_MESSAGE" value="add trace to program" />
+    <MESSAGE value="add trace unecho" />
+    <option name="LAST_COMMIT_MESSAGE" value="add trace unecho" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -631,6 +643,16 @@
           <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
           <folding>
             <element signature="e#14#115#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/autih.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
