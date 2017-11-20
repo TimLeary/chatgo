@@ -9,6 +9,7 @@ import (
 	"flag"
 	"os"
 	"chatgo/trace"
+	"fmt"
 )
 
 // templ represents a single template
@@ -35,6 +36,10 @@ func main() {
 	r.tracer = trace.New(os.Stdout)
 	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	http.Handle("/room", r)
+	pwd, _ := os.Getwd()
+	assets := pwd + "/../assets/"
+	fs := http.FileServer(http.Dir( assets ))
+	http.Handle("/assets/", http.StripPrefix("/assets", fs))
 	// get the room going
 	go r.run()
 	// start the web server
@@ -42,4 +47,11 @@ func main() {
 	if err := http.ListenAndServe(*addr, nil); err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
+}
+
+func exists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil { return true, nil }
+	if os.IsNotExist(err) { return false, nil }
+	return true, err
 }
