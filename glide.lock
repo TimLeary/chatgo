@@ -1,8 +1,12 @@
-hash: a2f15556ebbb2655adce152ff102028653f22905441962dcf7910f0345c82cdc
-updated: 2017-11-12T19:12:13.142821274+01:00
+hash: 811498005d36b7c2545f94aff3dd9adf61bc99962abde71090778cea10f644e3
+updated: 2017-11-20T17:21:40.706912729+01:00
 imports:
 - name: github.com/gorilla/websocket
   version: ea4d1f681babbce9545c9c5f3d5194a789c89f5b
   repo: https://github.com/gorilla/websocket.git
+  vcs: git
+- name: github.com/stretchr/gomniauth
+  version: 4b6c822be2eb64551618722ff80cecde4d63d9be
+  repo: https://github.com/stretchr/gomniauth
   vcs: git
 testImports: []

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c69fbb5-36b2-469f-894d-89aa9d49c521" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/login.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/main/main.go" afterPath="$PROJECT_DIR$/main/main.go" />
+      <change beforePath="$PROJECT_DIR$/glide.lock" afterPath="$PROJECT_DIR$/glide.lock" />
+      <change beforePath="$PROJECT_DIR$/glide.yaml" afterPath="$PROJECT_DIR$/glide.yaml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,7 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="518">
@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="glide.yaml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="glide.yaml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/glide.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="144">
+              <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -130,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/glide.yaml" />
         <option value="$PROJECT_DIR$/client.go" />
         <option value="$PROJECT_DIR$/room.go" />
         <option value="$PROJECT_DIR$/main.go" />
@@ -144,6 +143,7 @@
         <option value="$PROJECT_DIR$/assets/e.txt" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/main/main.go" />
+        <option value="$PROJECT_DIR$/glide.yaml" />
       </list>
     </option>
   </component>
@@ -292,7 +292,8 @@
     <MESSAGE value="add auth" />
     <MESSAGE value="add auth to route" />
     <MESSAGE value="add fileserver" />
-    <option name="LAST_COMMIT_MESSAGE" value="add fileserver" />
+    <MESSAGE value="start creating login" />
+    <option name="LAST_COMMIT_MESSAGE" value="start creating login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -578,14 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glide.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.sh" />
     <entry file="file://$PROJECT_DIR$/templates/chat.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -682,6 +675,14 @@
           <folding>
             <element signature="e#14#133#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glide.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
