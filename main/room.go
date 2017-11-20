@@ -29,7 +29,7 @@ type room struct {
 	clients map[*client]bool
 	// tracer will receive trace information of activity
 	// in the room.
-	tracer *trace.Tracer
+	tracer trace.Tracer
 }
 
 func (r *room) run() {
@@ -78,5 +78,6 @@ func newRoom() *room {
 		join:    make(chan *client),
 		leave:   make(chan *client),
 		clients: make(map[*client]bool),
+		tracer:  trace.Off(),
 	}
 }
