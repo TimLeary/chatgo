@@ -1,12 +1,54 @@
-hash: 811498005d36b7c2545f94aff3dd9adf61bc99962abde71090778cea10f644e3
-updated: 2017-11-20T17:21:40.706912729+01:00
+hash: ffdcaf33af7df557fcb6b0b9943c50a01990bd8061265623ad3fe8eb82a3027f
+updated: 2017-11-21T12:42:07.914293567+01:00
 imports:
+- name: github.com/clbanning/x2j
+  version: 70c25f62ac605396c6f3e14f2113fd709c79af28
 - name: github.com/gorilla/websocket
   version: ea4d1f681babbce9545c9c5f3d5194a789c89f5b
   repo: https://github.com/gorilla/websocket.git
   vcs: git
+- name: github.com/joho/godotenv
+  version: a79fa1e548e2c689c241d10173efd51e5d689d5b
+- name: github.com/markbates/goth
+  version: 86ca064cf1b7ebefa670bdc9eaadba0f3a6d9607
+  repo: https://github.com/markbates/goth
+  vcs: git
+- name: github.com/stretchr/codecs
+  version: 04a5b1e1910de7aaf00e1d4419d2508247fba1b4
+  subpackages:
+  - bson
+  - constants
+  - csv
+  - json
+  - jsonp
+  - msgpack
+  - services
+  - xml
 - name: github.com/stretchr/gomniauth
   version: 4b6c822be2eb64551618722ff80cecde4d63d9be
   repo: https://github.com/stretchr/gomniauth
   vcs: git
+  subpackages:
+  - common
+  - oauth2
+  - providers/google
+- name: github.com/stretchr/objx
+  version: 1a9d0bb9f541897e62256577b352fdbc1fb4fd94
+- name: github.com/stretchr/signature
+  version: 168b2a1e1b562bf381d47471e31f5979a2a51cd5
+- name: github.com/stretchr/stew
+  version: 80ef0842b48b329a6120607c817a85aff5a2ec71
+  subpackages:
+  - strings
+- name: github.com/stretchr/tracer
+  version: 66d3696bba973e1697f7d68413b3f19c6d6e2a7c
+- name: github.com/ugorji/go
+  version: a437b1adc2d23f710b6cebba4e8081c9469374d6
+  subpackages:
+  - codec
+- name: gopkg.in/mgo.v2
+  version: 3f83fa5005286a7fe593b055f0d7771a7dce4655
+  subpackages:
+  - bson
+  - internal/json
 testImports: []

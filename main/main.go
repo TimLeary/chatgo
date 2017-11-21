@@ -11,6 +11,7 @@ import (
 	"chatgo/trace"
 	"strings"
 	"fmt"
+	"github.com/joho/godotenv"
 )
 
 // templ represents a single template
@@ -47,8 +48,15 @@ func loginHandler(w http.ResponseWriter, r *http.Request)  {
 }
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	var addr = flag.String("addr", ":8888", "The addr of the  application.")
 	flag.Parse() // parse the flags
+
+	//googleRedirect := "http://localhost" + *addr + "/auth/callback/google"
+
 	r := newRoom()
 	r.tracer = trace.New(os.Stdout)
 	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
