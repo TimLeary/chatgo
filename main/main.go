@@ -6,12 +6,15 @@ import (
 	"sync"
 	"html/template"
 	"path/filepath"
-	"flag"
 	"os"
 	"chatgo/trace"
-	"strings"
 	"fmt"
 	"github.com/joho/godotenv"
+	"github.com/markbates/goth"
+	"github.com/markbates/goth/providers/gplus"
+	"math"
+	"github.com/markbates/goth/gothic"
+	"github.com/gorilla/sessions"
 )
 
 // templ represents a single template
@@ -31,31 +34,38 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r  *http.Request) {
 	t.templ.Execute(w, r)
 }
 
-// loginHandler handles the third-party login process.
-// format: /auth/{action}/{provider}
-func loginHandler(w http.ResponseWriter, r *http.Request)  {
-	segs := strings.Split(r.URL.Path, "/")
-	action := segs[2]
-	provider := segs[3]
+func init() {
+	store := sessions.NewFilesystemStore(os.TempDir(), []byte("goth-example"))
+	// set the maxLength of the cookies stored on the disk to a larger number to prevent issues with:
+	// securecookie: the value is too long
+	// when using OpenID Connect , since this can contain a large amount of extra information in the id_token
 
-	switch action {
-	case "login":
-		log.Println("TODO handle login for", provider)
-	default:
-		w.WriteHeader(http.StatusNotFound)
-		fmt.Fprintf(w, "Auth action %s not supported", action)
-	}
+	// Note, when using the FilesystemStore only the session.ID is written to a browser cookie, so this is explicit for the storage on disk
+	store.MaxLength(math.MaxInt64)
+
+	gothic.Store = store
 }
 
 func main() {
-	err := godotenv.Load()
+
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	fmt.Println(exPath)
+
+	err = godotenv.Load(exPath + string(filepath.Separator) + ".env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	var addr = flag.String("addr", ":8888", "The addr of the  application.")
-	flag.Parse() // parse the flags
+	var port = os.Getenv("ADDRESS")
 
-	//googleRedirect := "http://localhost" + *addr + "/auth/callback/google"
+	fmt.Println(os.Getenv("SECURITY_KEY"))
+	googleRedirect := "http://localhost" + port + "/auth/callback/google"
+	goth.UseProviders(
+		gplus.New(os.Getenv("GOOGLE_CLIENT_ID"),os.Getenv("GOOGLE_CLIENT_SECRET"), googleRedirect))
+
 
 	r := newRoom()
 	r.tracer = trace.New(os.Stdout)
@@ -70,8 +80,8 @@ func main() {
 	// get the room going
 	go r.run()
 	// start the web server
-	log.Println("Starting web server on", *addr)
-	if err := http.ListenAndServe(*addr, nil); err != nil {
-		log.Fatal("ListenAndServe:", err)
+	log.Println("Starting web server on", port)
+	if err := http.ListenAndServe(port, nil); err != nil {
+		log.Fatal("Error ListenAndServe:", err)
 	}
 }

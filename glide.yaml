@@ -4,10 +4,14 @@ import:
   vcs: git
   repo: https://github.com/gorilla/websocket.git
   version: ^1.2.0
-- package: github.com/stretchr/gomniauth
-  vcs: git
-  repo: https://github.com/stretchr/gomniauth
+#- package: github.com/stretchr/gomniauth
+#  vcs: git
+#  repo: https://github.com/stretchr/gomniauth
 - package: github.com/markbates/goth
   vcs: git
   repo: https://github.com/markbates/goth
   version: ^1.43.0
+- package: github.com/gorilla/sessions
+  vcs: git
+  repo: https://github.com/gorilla/sessions
+  version: ^1.1
