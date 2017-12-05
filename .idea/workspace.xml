@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2c69fbb5-36b2-469f-894d-89aa9d49c521" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
-      <change beforePath="$PROJECT_DIR$/.env.dist" afterPath="$PROJECT_DIR$/.env.dist" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/main/main.go" afterPath="$PROJECT_DIR$/main/main.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -316,7 +314,8 @@
     <MESSAGE value="add Gomniauth" />
     <MESSAGE value="remove Gomniauth" />
     <MESSAGE value="updates routes for mux" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates routes for mux" />
+    <MESSAGE value="create host env" />
+    <option name="LAST_COMMIT_MESSAGE" value="create host env" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
