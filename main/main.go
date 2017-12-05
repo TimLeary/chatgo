@@ -77,7 +77,7 @@ func main() {
 	router.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	router.Handle("/login", &templateHandler{filename: "login.html"})
 
-	router.HandleFunc("/auth/{action}/{provider}", loginHandler)
+	router.HandleFunc("/auth/login/{provider}", loginHandler)
 	router.Handle("/room", room)
 
 	pwd, _ := os.Getwd()

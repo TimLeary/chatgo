@@ -1,9 +1,10 @@
 package main
 
 import ("net/http"
-	"strings"
 	"fmt"
+	"log"
 	"github.com/markbates/goth/gothic"
+	"github.com/gorilla/mux"
 )
 
 type authHandler struct {
@@ -11,28 +12,21 @@ type authHandler struct {
 }
 
 // loginHandler handles the third-party login process.
-// format: /auth/{action}/{provider}
+// format: /auth/login/{provider}
 func loginHandler(w http.ResponseWriter, r *http.Request)  {
-	segs := strings.Split(r.URL.Path, "/")
-	action := segs[2]
-	provider := segs[3]
+	vars := mux.Vars(r)
+	provider := vars["provider"]
+	log.Println(provider)
+	user, err := gothic.CompleteUserAuth(w, r)
 
-	switch action {
-	case "login":
-		user, err := gothic.CompleteUserAuth(w, r)
-
-		if err != nil {
-			fmt.Fprintln(w, err)
-			return
-		}
-
-		w.WriteHeader(http.StatusNotFound)
-		fmt.Fprintf(w, "Provider: %s", provider)
-		fmt.Fprintf(w, "User: %s", user)
-	default:
-		w.WriteHeader(http.StatusNotFound)
-		fmt.Fprintf(w, "Auth action %s not supported", action)
+	if err != nil {
+		fmt.Fprintln(w, err)
+		return
 	}
+
+	w.WriteHeader(http.StatusNotFound)
+	fmt.Fprintf(w, "Provider: %s", provider)
+	fmt.Fprintf(w, "User: %s", user)
 }
 
 func (h *authHandler) ServeHTTP(w http.ResponseWriter, r  *http.Request) {
