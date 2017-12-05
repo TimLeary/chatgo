@@ -15,6 +15,7 @@ import (
 	"math"
 	"github.com/markbates/goth/gothic"
 	"github.com/gorilla/sessions"
+	"github.com/gorilla/mux"
 )
 
 // templ represents a single template
@@ -67,19 +68,26 @@ func main() {
 		gplus.New(os.Getenv("GOOGLE_CLIENT_ID"),os.Getenv("GOOGLE_CLIENT_SECRET"), googleRedirect))
 
 
-	r := newRoom()
-	r.tracer = trace.New(os.Stdout)
-	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
-	http.Handle("/login", &templateHandler{filename: "login.html"})
-	http.HandleFunc("/auth/", loginHandler)
-	http.Handle("/room", r)
+	room := newRoom()
+	room.tracer = trace.New(os.Stdout)
+
+	router := mux.NewRouter()
+	router.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
+	router.Handle("/login", &templateHandler{filename: "login.html"})
+
+	router.HandleFunc("/auth/", loginHandler)
+	router.Handle("/room", room)
+
 	pwd, _ := os.Getwd()
 	assets := pwd + "/../assets/"
 	fs := http.FileServer(http.Dir( assets ))
-	http.Handle("/assets/", http.StripPrefix("/assets", fs))
+	router.Handle("/assets/", http.StripPrefix("/assets", fs))
+
 	// get the room going
-	go r.run()
+	go room.run()
 	// start the web server
+
+	http.Handle("/", router)
 	log.Println("Starting web server on", port)
 	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal("Error ListenAndServe:", err)

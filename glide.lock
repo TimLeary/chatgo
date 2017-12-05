@@ -1,5 +1,5 @@
-hash: 0294c9d89a51cb810f198672f99a1162f8c944d3d86f77ccc18b3d91c6921b75
-updated: 2017-12-04T11:12:10.069057947+01:00
+hash: 8e4ae2aa233e852e3378b6b44f7c9e7ec4a6a20bf90b74dfe4da5d7717f57bc1
+updated: 2017-12-05T09:37:34.13900379+01:00
 imports:
 - name: github.com/golang/protobuf
   version: 1e59b77b52bf8e4b449a57e6f79f21226d571845
@@ -8,7 +8,9 @@ imports:
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/mux
-  version: c572efe4294d5a0e354e01f2ddaa8b1f0c3cb3dd
+  version: 7f08801859139f86dfafd1c296e2cba9a80d292e
+  repo: https://github.com/gorilla/mux
+  vcs: git
 - name: github.com/gorilla/securecookie
   version: e59506cc896acb7f7bf732d4fdf5e25f7ccd8983
 - name: github.com/gorilla/sessions
