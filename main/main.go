@@ -60,10 +60,12 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
+	var host = os.Getenv("HOST")
 	var port = os.Getenv("ADDRESS")
 
 	fmt.Println(os.Getenv("SECURITY_KEY"))
-	googleRedirect := "http://localhost" + port + "/auth/callback/google"
+	googleRedirect := "http://"+ host + port + "/auth/callback/google"
 	goth.UseProviders(
 		gplus.New(os.Getenv("GOOGLE_CLIENT_ID"),os.Getenv("GOOGLE_CLIENT_SECRET"), googleRedirect))
 
@@ -75,7 +77,7 @@ func main() {
 	router.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	router.Handle("/login", &templateHandler{filename: "login.html"})
 
-	router.HandleFunc("/auth/", loginHandler)
+	router.HandleFunc("/auth/{action}/{provider}", loginHandler)
 	router.Handle("/room", room)
 
 	pwd, _ := os.Getwd()
