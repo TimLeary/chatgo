@@ -65,7 +65,7 @@ func main() {
 	var port = os.Getenv("ADDRESS")
 
 	fmt.Println(os.Getenv("SECURITY_KEY"))
-	googleRedirect := "http://"+ host + port + "/auth/callback/google"
+	googleRedirect := "http://"+ host + port + "/auth/callback/gplus"
 	goth.UseProviders(
 		gplus.New(os.Getenv("GOOGLE_CLIENT_ID"),os.Getenv("GOOGLE_CLIENT_SECRET"), googleRedirect))
 
@@ -77,7 +77,8 @@ func main() {
 	router.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	router.Handle("/login", &templateHandler{filename: "login.html"})
 
-	router.HandleFunc("/auth/login/{provider}", loginHandler)
+	router.HandleFunc("/auth/login/{provider}", gothic.BeginAuthHandler)
+	router.HandleFunc("/auth/callback/{provider}", callbackHandler)
 	router.Handle("/room", room)
 
 	pwd, _ := os.Getwd()
