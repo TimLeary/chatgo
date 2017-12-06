@@ -84,7 +84,7 @@ func main() {
 	pwd, _ := os.Getwd()
 	assets := pwd + "/../assets/"
 	fs := http.FileServer(http.Dir( assets ))
-	router.Handle("/assets/", http.StripPrefix("/assets", fs))
+	router.PathPrefix("/assets/").Handler(http.StripPrefix("/assets", fs))
 
 	// get the room going
 	go room.run()
