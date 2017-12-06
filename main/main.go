@@ -36,7 +36,7 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r  *http.Request) {
 }
 
 func init() {
-	store := sessions.NewFilesystemStore(os.TempDir(), []byte("goth-example"))
+	store := sessions.NewFilesystemStore(os.TempDir(), []byte("goth-data"))
 	// set the maxLength of the cookies stored on the disk to a larger number to prevent issues with:
 	// securecookie: the value is too long
 	// when using OpenID Connect , since this can contain a large amount of extra information in the id_token
@@ -77,8 +77,9 @@ func main() {
 	router.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	router.Handle("/login", &templateHandler{filename: "login.html"})
 
-	router.HandleFunc("/auth/login/{provider}", gothic.BeginAuthHandler)
+	router.HandleFunc("/auth/login/{provider}", loginHandler)
 	router.HandleFunc("/auth/callback/{provider}", callbackHandler)
+	router.HandleFunc("auth/logout", logoutHandler)
 	router.Handle("/room", room)
 
 	pwd, _ := os.Getwd()

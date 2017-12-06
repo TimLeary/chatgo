@@ -3,7 +3,8 @@ package main
 import (
 	"net/http"
 	"github.com/markbates/goth/gothic"
-	"fmt"
+	"encoding/json"
+	"encoding/base64"
 )
 
 type authHandler struct {
@@ -33,6 +34,15 @@ func MustAuth(handler http.Handler) http.Handler {
 	return &authHandler{next: handler}
 }
 
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	// try to get the user without re-authenticating
+	if _, err := gothic.CompleteUserAuth(w, r); err == nil {
+
+	} else {
+		gothic.BeginAuthHandler(w, r)
+	}
+}
+
 func callbackHandler(w http.ResponseWriter, r *http.Request)  {
 	user, err := gothic.CompleteUserAuth(w, r)
 
@@ -41,6 +51,21 @@ func callbackHandler(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "User: %s", user)
+
+	authCookieValue := make(map[string]interface{})
+	authCookieValue["name"] = user.Name
+	value, _ := json.Marshal(authCookieValue)
+	valueBased := base64.StdEncoding.EncodeToString(value)
+
+	http.SetCookie(w, &http.Cookie{
+		Name:  "auth",
+		Value: valueBased,
+		Path:  "/"})
+
+	redirectToChat(w)
+}
+
+func logoutHandler(w http.ResponseWriter, r *http.Request)  {
+	gothic.Logout(w, r)
+	redirectToHome(w)
 }
